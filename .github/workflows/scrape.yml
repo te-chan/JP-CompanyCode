@@ -16,7 +16,7 @@ jobs:
           python-version: '3.x'
       - name: Install dependencies
         run: |
-          pip install -r requiements.txt
+          pip install -r requirements.txt
       - name: Run scraping script
         run: python src/run.py
       - name: Commit and push changes
