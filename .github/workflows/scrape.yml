@@ -3,6 +3,7 @@ name: Scrape Stock Codes
 on:
   schedule:
     - cron: '0 0 * * *'  # 毎日UTCの午前0時に実行
+  workflow_dispatch:     # 手動トリガーを有効化
 
 jobs:
   scrape:
