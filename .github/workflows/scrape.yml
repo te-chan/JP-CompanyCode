@@ -1,0 +1,25 @@
+name: Scrape Stock Codes
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 毎日UTCの午前0時に実行
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          pip install -r requiements.txt
+      - name: Run scraping script
+        run: python src/run.py
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Scrape stock codes at $(date -d "9 hours" +'%Y-%m-%d %H:%M:%S')"
+          branch: main
